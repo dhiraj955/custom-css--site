@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>responsive navbar</title>
+    <link rel="stylesheet" href="nav.css">
+</head>
+<body>
+    <div class="navbar">
+        <h3>EcoHaven</h3>
+        <div class="main-menu">
+            <span class="menuBtn" onclick="openmenu()" >&#9776</span>
+            <span class="closeBtn" onclick="closemenu()" >&#9746</span>
+            <ul id="menu">
+                <li><a href="">Home</a></li>
+                <li><a href="">Shop</a></li>
+                <li><a href="">About</a></li>
+                <li><a href="">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="login">
+        <button>
+            <a href="login.html">Login <i class="fas fa-arrow-right" ></i></a>
+        </button>
+        <div class="cart"><i class="fas fa-shopping-cart"></i></div>
+    </div>
+
+    <script>
+        let x = document.getElementById('menu');
+        let menuBtn = document.querySelector('.menuBtn');
+        let closeBtn = document.querySelector('.closeBtn')
+
+         function openmenu(){
+            x.style.display = 'block';
+            menuBtn.style.display = 'none';
+            closeBtn.style.display = 'block';
+            
+         }
+         function closemenu(){
+            x.style.display = 'none';
+            menuBtn.style.display = 'block';
+            closeBtn.style.display = 'block';
+            
+         }
+    </script>
+    
+</body>
+</html>

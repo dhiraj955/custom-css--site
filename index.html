@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/brands.min.css" integrity="sha512-58P9Hy7II0YeXLv+iFiLCv1rtLW47xmiRpC1oFafeKNShp8V5bKV/ciVtYqbk2YfxXQMt58DjNfkXFOn62xE+g==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="login.css" />
+
+
+    <title>EcoHaven</title>
+  </head>
+  <style>
+    .popup {
+      position: absolute;
+      top: -50%;
+      left: 50%;
+      transition: 2s;
+      transform: translate(-50%, -50%) scale(1.25);
+      width: 380px;
+      padding: 20px 30px;
+      background: #fff;
+      box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.15);
+      border-radius: 10px;
+    }
+    .popupactive {
+      top: 50%;
+      z-index: 10;
+    }
+    .popup .closebtn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      height: 25px;
+      width: 25px;
+      font-size: 1.5rem;
+      background: red;
+      color: #eee;
+      text-align: center;
+      line-height: 25px;
+      border-radius: 15px;
+      cursor: pointer;
+      z-index: 10;
+    }
+    .popup .form h2 {
+      text-align: center;
+      color: #222;
+      margin: 10px opx 20px;
+      font-size: 25px;
+    }
+    .popup .form .form-element {
+      margin: 15px 0px;
+    }
+    .popup .form .form-element label {
+      font-size: 14px;
+      color: #222;
+    }
+    .popup .form .form-element input[type="text"],
+    .popup .form .form-element input[type="password"] {
+      margin-top: 5pz;
+      display: block;
+      width: 100%;
+      padding: 10px;
+      outline: none;
+      border: 1px solid #aaa;
+      border-radius: 5px;
+    }
+    .popup .form .form-element input[type="checkbox"] {
+      margin-right: 5px;
+    }
+    .popup .form .form-element button {
+      width: 100%;
+      height: 40px;
+      border: none;
+      outline: none;
+      font-size: 1rem;
+      background-color: green;
+      color: #f5f5f5;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .popup .form .form-element a {
+      display: block;
+      text-align: right;
+      font-size: 15px;
+      color: #1a79ca;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    @media only screen and (max-width: 770px) {
+      .popupactive {
+        top: 35%;
+        z-index: 10;
+      }
+    }
+    @media only screen and (max-width: 450px) {
+      .popup{
+        width: 250px;
+        height: 340px;
+      }
+      .popupactive {
+        top: 40%;
+        z-index: 10;
+      }
+    }
+    
+  </style>
+
+  <body>
+    <header class="header">
+      <div class="navbar">
+        <h3>EcoHaven</h3>
+        <div class="login">
+          <button onclick="showModal()">
+            Login <i class="fas fa-arrow-right"></i>
+          </button>
+          <div class="popup" id="popup">
+            <div class="closebtn" onclick="closeModal()">&times;</div>
+            <div class="form">
+              <h2>Log in</h2>
+              <div class="form-element">
+                <label for="email">Email</label>
+                <input type="text" id="email" placeholder="Enter email" />
+              </div>
+              <div class="form-element">
+                <label for="password">Password</label>
+                <input
+                  type="password"
+                  id="password"
+                  placeholder="Enter password"
+                />
+              </div>
+              <div class="form-element">
+                <input type="checkbox" id="remember-me" />
+                <label for="remember-me">Remember me</label>
+              </div>
+              <div class="form-element">
+                <button>Sign in</button>
+              </div>
+              <div class="form-element">
+                <a href="#">Forget password?</a>
+              </div>
+            </div>
+          </div>
+          <div class="cart"><i class="fas fa-shopping-cart"></i></div>
+        </div>
+        <div class="main-menu">
+          <span class="menuBtn" onclick="openmenu()"> &#9776 </span>
+          <span class="closeBtn" onclick="closemenu()"> &#9746 </span>
+          <ul id="menu">
+            <li><a href="#">Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <section class="hero">
+        <div class="container">
+          <div class="hero_para">
+            <h2 class="heading_two">Welcome to EcoHaven</h2>
+            <h1 class="heading_one">
+              Discover the Beauty of Nature at Your Fingertips
+            </h1>
+          </div>
+        </div>
+        <button class="shop_now">Shop Now</button>
+      </section>
+    </header>
+    <section class="second_section">
+      <div class="container">
+        <div class="service">
+          <div class="service_section">
+            <div class="border">
+              <div class="service_icon">
+                <i class="icon_list fas fa-bicycle"></i>
+              </div>
+              <h2 class="service_heading">Deliver On Time</h2>
+              <p class="service_para">
+                We ensure every order is delivered on time, always.
+              </p>
+            </div>
+          </div>
+          <div class="service_section">
+            <div class="border">
+              <div class="service_icon">
+                <svg
+                  class="icon_list"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 8h6m-5 0a3 3 0 110 6H9l3 3m-3-6h6m6 1a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              </div>
+              <h2 class="service_heading">Secure Payment</h2>
+              <p class="service_para">
+                Your payments are encrypted and 100% safe with us.
+              </p>
+            </div>
+          </div>
+          <div class="service_section">
+            <div class="border">
+              <div class="service_icon">
+                <i class="icon_list fas fa-truck"></i>
+              </div>
+              <h2 class="service_heading">Free Shipping</h2>
+              <p class="service_para">
+                Enjoy fast and free shipping on all your purchases today.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section_third">
+      <div class="third_container">
+        <div class="third_flex">
+          <div class="third_flex_part"></div>
+        </div>
+        <div class="third_contains">
+          <div class="third_heading_one">
+            <h1 class="third_heading_one_part">Our Trending Products</h1>
+          </div>
+          <div class="third_card">
+            <div class="third_card_part">
+              <img
+                alt="content"
+                class="third_image"
+                src="./images/trending-p-1-400x434.jpg"
+              />
+            </div>
+            <h2 class="third_heading_two">Silver Mist</h2>
+            <p class="third_para">Indoor Plants</p>
+            <a class="third_dollar">$92.00 </a>
+            <button class="third_button">Add To Cart</button>
+          </div>
+          <div class="third_card">
+            <div class="third_card_part">
+              <img
+                alt="content"
+                class="third_image"
+                src="./images/trending-p-2-400x434.jpg"
+              />
+            </div>
+            <h2 class="third_heading_two">Golden Glow</h2>
+            <p class="third_para">Indoor Plants</p>
+            <a class="third_dollar">$85.00 </a>
+            <button class="third_button">Add To Cart</button>
+          </div>
+          <div class="third_card">
+            <div class="third_card_part">
+              <img
+                class="third_image"
+                src="./images/trending-p-3-400x434.jpg"
+                alt="content"
+              />
+            </div>
+            <h2 class="third_heading_two">Desert Bloom</h2>
+            <p class="third_para">Indoor Plants</p>
+            <a class="third_dollar">$70.00 </a>
+            <button class="third_button">Add To Cart</button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <header
+      class="middle h-[64vh] body-font relative md:h-[60vh] bg-cover bg-center bg-[url('./images/play.jpg')] before:absolute before:inset-0 before:bg-black before:opacity-55"
+    >
+      <div
+        class="fourth_container mx-auto p-5 flex md:w-[85vw] relative z-10 text-white"
+      ></div>
+
+      <section
+        class="fourth_section text-white w-[70vw] mx-auto body-font relative z-10 md:w-[50vw]"
+      >
+        <div class="fourth_div container md:px-5 md:pt-5 mx-auto">
+          <div class="fourth_class flex flex-col text-center w-full">
+            <h1
+              class="fourth_heading_one sm:text-5xl text-4xl font-bold title-font mb-2"
+            >
+              Flash Sale: Up to 50% Off On Select Items!
+            </h1>
+            <p class="fourth_para text-[1.2rem] mb-2">
+              Don’t miss out on our flash sale event! For a limited time,<br />
+              enjoy up to 50% off on a selection of our best-selling products.
+            </p>
+          </div>
+        </div>
+        <button
+          class="fourth_shop flex mx-auto mb- text-white bg-transparent-500 border-1 py-2 px-8 focus:outline-none hover:opacity-80 hover:cursor-pointer rounded-full text-lg"
+        >
+          Shop Now
+        </button>
+      </section>
+    </header>
+
+    <section class="fifth_section w-[85vw] mx-auto text-gray-600 body-font">
+      <div class="fifth_container px-5 py-24 mx-auto">
+        <div class="fifth_div flex justify-center w-full mb-10">
+          <div
+            class="fifth_class flex flex-wrap w-full mb-10 flex-col items-center text-center"
+          >
+            <h1
+              class="fifth_heading sm:text-3xl text-2xl font-medium title-font text-gray-900"
+            >
+              Our Categories
+            </h1>
+          </div>
+        </div>
+        <div
+          class="fifth_categories flex flex-wrap justify-center items-center -m-4"
+        >
+          <div class="fifth_service xl:w-1/4 md:w-1/2 p-4">
+            <div class="fifth_image_section bg-gray-100 p-6 rounded-lg">
+              <img
+                class="fifth_image h-70 rounded w-full object-cover object-center mb-2"
+                src="./images/dessert-bloom.jpg"
+                alt="content"
+              />
+
+              <h2
+                class="fifth_heading_one text-lg text-gray-900 font-medium title-font text-center"
+              >
+                Chichen Itza
+              </h2>
+            </div>
+          </div>
+          <div class="fifth_service xl:w-1/4 md:w-1/2 p-4">
+            <div class="fifth_image_section bg-gray-100 p-6 rounded-lg">
+              <img
+                class="fifth_image h-70 rounded w-full object-cover object-center mb-2"
+                src="./images/house-plant.jpg"
+                alt="content"
+              />
+              <h2
+                class="fifth_heading_one text-lg text-gray-900 font-medium title-font text-center"
+              >
+                Colosseum Roma
+              </h2>
+            </div>
+          </div>
+          <div class="fifth_service xl:w-1/4 md:w-1/2 p-4">
+            <div class="fifth_image_section bg-gray-100 p-6 rounded-lg">
+              <img
+                class="fifth_image h-70 rounded w-full object-cover object-center mb-2"
+                src="./images/outdoor-plant.jpg"
+                alt="content"
+              />
+              <h2
+                class="fifth_heading_one text-lg text-gray-900 font-medium title-font text-center"
+              >
+                Great Pyramid of Giza
+              </h2>
+            </div>
+          </div>
+          <div class="fifth_service xl:w-1/4 md:w-1/2 p-4">
+            <div class="fifth_image_section bg-gray-100 p-6 rounded-lg">
+              <img
+                class="fifth_image h-70 rounded w-full object-cover object-center mb-2"
+                src="./images/succulents.jpg"
+                alt="content"
+              />
+              <h2
+                class="fifth_heading_one text-lg text-gray-900 font-medium title-font text-center"
+              >
+                San Francisco
+              </h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sixth_section">
+      <div class="sixth_container">
+        <div class="sixth_image_section">
+          <img class="sixth_image" alt="hero" src="./images/stats-count.jpg" />
+        </div>
+        <div class="sixth_heading_section">
+          <h1 class="sixth_heading">Your Premier Destination for All Green.</h1>
+          <p class="sixth_para">
+            At EcoHaven, we believe in the transformative power of plants.
+            Whether you’re a seasoned gardener or just starting your green
+            journey, our curated selection of plants will inspire and enrich
+            your living space.
+          </p>
+
+          <div class="sixth_custom">
+            <div>
+              <span class="sixth_span">89%</span>
+              <p class="sixth_paras">Customer Satisfaction</p>
+            </div>
+            <div>
+              <span class="sixth_span">105k</span>
+              <p class="sixth_paras">Plant Sold</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer
+      class="footer_section "
+    >
+      <div
+        class="footer_container "
+      >
+        <a
+          class="footer_logo "
+        >
+          <span class="footer_span ">EcoHaven </span>
+        </a>
+        <p
+          class="footer_para "
+        >
+          © 2025 ecoheaven —
+          <a
+            href="https://twitter.com/knyttneve"
+            class="footer_anchor text-white-600 ml-1"
+            rel="noopener noreferrer"
+            target="_blank"
+            >@mehta</a
+          >
+        </p>
+        <span
+          class="inline-flex "
+        >
+          <a href="https://www.facebook.com/" target="_blank">
+            <svg
+              fill="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              class="svg svg-margin"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"
+              ></path>
+            </svg>
+          </a>
+          <a href="" target="_blank">
+            <svg
+              fill="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              class="svg"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"
+              ></path>
+            </svg>
+          </a>
+          <a href="https://www.instagram.com/" target="_blank">
+            <svg
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              class="svg svg-left"
+              viewBox="0 0 24 24"
+            >
+              <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+              <path
+                d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"
+              ></path>
+            </svg>
+          </a>
+          <a href="https://www.linkedin.com/feed/" target="_blank">
+            <svg
+              fill="currentColor"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="0"
+              class="svg svg-left"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke="none"
+                d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"
+              ></path>
+              <circle cx="4" cy="4" r="2" stroke="none"></circle>
+            </svg>
+          </a>
+        </span>
+      </div>
+    </footer>
+    
+
+    
+    <script src="script.js"></script>
+  </body>
+</html>
